@@ -20,7 +20,10 @@ function TopicsContainer() {
                  method: "DELETE"
              })
              .then(r => r.json())
-             .then(obj => console.log(obj))
+             .then(obj => {
+                const newTopics = topics.filter(topic => topic.id !== topicId);
+                setTopics(newTopics);
+             })
              .catch(error => console.log(error))
     }
 
