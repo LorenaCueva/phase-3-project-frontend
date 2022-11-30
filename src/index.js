@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App'
+// import M from 'materialize-css'
+// import 'materialize-css/dist/css/materialize.min.css'
+// import 'material-icons/iconfont/material-icons.css'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
