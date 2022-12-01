@@ -31,8 +31,8 @@ function Topic({topic, editable, onDelete}){
                 })
             })
             .then(r => r.json())
-            .then(obj => {console.log(obj); setOnEdit(false)})
-            setOnEdit(false);
+            .then(obj => setOnEdit(false))
+            .catch(error => console.log(error))
         }
     }
 
@@ -51,7 +51,7 @@ function Topic({topic, editable, onDelete}){
             <div>
                 <ul className="collection with-header grey lighten-4" onClick={()=>console.log("card")}>
                     <li className="collection-header teal lighten-2"><h4>{topicData.title}</h4></li>
-                    { editable ? null : <li className="collection-item grey lighten-4">Author: {topicData.author}</li>}
+                    <li className="collection-item grey lighten-4">Author: {topicData.author}</li>
                     <li className="collection-item grey lighten-4">Created on: {created_at}</li>
                     <li className="collection-item grey lighten-4">Number of Ideas: {topicData.ideas_count}</li>
                 </ul>
