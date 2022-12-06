@@ -9,6 +9,14 @@ function Idea({idea, user_id, onIdeaDelete}){
 
     const editable = idea.user_id == user_id
 
+    // console.log(editable)
+
+    function handleChooseIdea(){
+        if(window.confirm("Close Topic and Choose as Winner?")){
+            console.log("star")
+        }
+    }
+
 
     function handleLikeClick(){
         if(liked) {
@@ -107,7 +115,7 @@ function Idea({idea, user_id, onIdeaDelete}){
                                 </>
                                     
                                 : null}
-                            <i className="padding small material-icons" onClick={handleLikeClick}>{liked ? "favorite" : "favorite_border"}</i>{likes}
+                            <i className="padding small material-icons" onClick={handleLikeClick}>{liked ? "favorite" : "favorite_border"}</i>{likes} likes
                         </a>
                         <p>{ideaBody} <br/> 
                             By: {idea.author}

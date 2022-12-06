@@ -37,10 +37,10 @@ function NewIdea({user_id, topic_id, onNewIdea, onCancel}){
 
     return(
         <div>
-                <div className='padding'>
-                    <form className="grey lighten-4" onSubmit={handleNewIdeaSubmit}>
+                <div className='padding left-align'>
+                    <form className="grey lighten-4 left-align" onSubmit={handleNewIdeaSubmit}>
                         <label className="" htmlFor="addIdea">Add Idea: </label>
-                        <input type="text" id ="addIdea" className="materialize-textarea center-align" name="addIdea" value={newIdea} onChange={handleFormChange}/>
+                        <input type="text" id ="addIdea" className="materialize-textarea left-align" name="addIdea" value={newIdea} onChange={handleFormChange}/>
                     </form>
                     <div className='padding right-align'>
                             <button className="waves-effect waves-light btn" onClick={handleNewIdeaSubmit}><i className="material-icons left">check</i>Add Idea</button>

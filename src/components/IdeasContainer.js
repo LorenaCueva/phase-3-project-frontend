@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import Idea from "./Idea";
 import NewIdea from "./NewIdea";
 
-function IdeasContainer({topic_id, user_id}){
+function IdeasContainer({topic_id, user_id, onBack}){
 
     const [ideas, setIdeas] = useState([]);
     const [addIdea, setAddIdea] = useState(false);
@@ -34,15 +34,18 @@ function IdeasContainer({topic_id, user_id}){
         <div>
             <ul className="collection with-header grey lighten-4" >
                     <li className="collection-header teal lighten-2 left-align">
-                    <a className="secondary-content">
-                        {addIdea ? null : 
-                        <i className="padding medium material-icons white-text" onClick={handleAddIdeaClick}>add_box</i>}
+                    <a className="padding secondary-content white-text">
+                        {addIdea ? null :
+                        <><i className="padding small material-icons white-text" onClick={handleAddIdeaClick}>add_box</i>Add</>
+                        }
                     </a>
                     <h4>Ideas:</h4></li>
                     {addIdea ? <NewIdea user_id={user_id} topic_id={topic_id} onNewIdea={handleNewIdea} onCancel={()=>setAddIdea(false)}/> : null}
                     {ideasToRender}
             </ul>
-            
+            <div className='padding right-align'>
+                <button className="waves-effect waves-light btn" onClick={onBack}><i className="material-icons left">add_box</i>Back</button>
+            </div>
         </div>
     )
 }

@@ -11,8 +11,6 @@ function TopicsContainer({user_id, type}) {
     const [topics, setTopics] = useState([]);
     const [visible, setVisible] = useState(0);
 
-    console.log(visible)
-
     useEffect(()=>{
         M.AutoInit();
         fetch(`http://localhost:9292/topics/${type}`)
@@ -37,11 +35,15 @@ function TopicsContainer({user_id, type}) {
         visible == 0 ? setVisible(id) : setVisible(0)
     }
 
+    function handleCloseTopic(id){
+        console.log("id")
+    }
+
     let topicsToRender = null;
 
     if (type == "open"){
         const topicsList = visible == 0 ? topics : topics.filter(topic => topic.id == visible)
-        topicsToRender = topicsList.map(topic => <Topic key={topic.id} topic={topic} user_id={user_id} onDelete={handleTopicDelete} setVisible={handleSetVisible}/>)
+        topicsToRender = topicsList.map(topic => <Topic key={topic.id} topic={topic} user_id={user_id} onDelete={handleTopicDelete} setVisible={handleSetVisible} onClose={handleCloseTopic}/>)
     }
     else if (type == "closed"){
         topicsToRender = topics.map(topic => <TopicClosed key={topic.id} topic={topic}/>)

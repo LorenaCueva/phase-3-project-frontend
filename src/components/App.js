@@ -8,21 +8,19 @@ function App() {
   const user_id = 1
 
   return (
-    <div className='container'>
+    <div >
       <div className="App">
-        <header className="App-header">
-        <h1>Hello</h1>
-        {/* <NavBar/>
-        <TopicsContainer/> */}
-        </header>
+        {/* <header className="App-header">
+        </header> */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<NavBar/>}>
-              <Route path="topics/open" element={<TopicsContainer user_id={user_id}/>}></Route>
+            <Route index element={<TopicsContainer user_id={user_id} type={"open"}/>}></Route>
+              <Route path="topics/open" element={<TopicsContainer user_id={user_id} type={"open"}/>}></Route>
+              <Route path="topics/closed" element={<TopicsContainer user_id={user_id} type={"closed"}/>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>
-        
       </div>
      </div>
   );

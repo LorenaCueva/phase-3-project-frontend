@@ -40,10 +40,10 @@ function NewTopic({onCreateTopic, user_id}){
     return(
         <div>
             {addNewTopic ? 
-                <div className="padding">
+                <div className="padding left-align">
                     <form className="grey lighten-4" onSubmit={handleCreateNewTopic}>
                         <label className="" htmlFor="addTopic">Topic Name: </label>
-                        <input type="text" id ="addTopic" className="materialize-textarea center-align" name="addTopic" value={newTopicName} onChange={handleFormChange}/>
+                        <input type="text" id ="addTopic" className="materialize-textarea" name="addTopic" value={newTopicName} onChange={handleFormChange}/>
                     </form>
                         <div className='padding right-align'>
                             <button className="waves-effect waves-light btn" onClick={handleCreateNewTopic}><i className="material-icons left">check</i>Create</button>
