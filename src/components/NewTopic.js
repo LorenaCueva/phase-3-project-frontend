@@ -31,7 +31,6 @@ function NewTopic({onCreateTopic, user_id}){
             .then(obj => {
                 setNewTopicName("");
                 setAddNewTopic(false);
-                console.log(obj)
                 onCreateTopic(obj)})
             .catch(error => console.log(error));
 
@@ -48,8 +47,8 @@ function NewTopic({onCreateTopic, user_id}){
                     </form>
                         <div className='padding right-align'>
                             <button className="waves-effect waves-light btn" onClick={handleCreateNewTopic}><i className="material-icons left">check</i>Create</button>
+                            <button className="waves-effect waves-light btn" onClick={() => {setAddNewTopic(!addNewTopic); setNewTopicName("")}}><i className="material-icons left">cancel</i>Cancel</button>
                         </div>
-                    
                 </div> : 
                 <div className='padding'>
                     <button className="waves-effect waves-light btn" onClick={() => setAddNewTopic(!addNewTopic)}><i className="material-icons left">add_box</i>Add Topic</button>

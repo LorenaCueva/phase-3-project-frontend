@@ -3,12 +3,12 @@ import Topic from './Topic';
 import NewTopic from './NewTopic';
 import M from 'materialize-css';
 
-function TopicsContainer() {
+function TopicsContainer({user_id}) {
 
     const [topics, setTopics] = useState([]);
+    // const [visible, setVisible] = useState(false);
     // const [filter, setFilter] = useState(null);
 
-    const user = 1
 
     useEffect(()=>{
         M.AutoInit();
@@ -21,27 +21,21 @@ function TopicsContainer() {
     },[])
 
     function handleTopicDelete(topicId){
-        fetch(`http://localhost:9292/topic/${topicId}`,{
-                 method: "DELETE"
-             })
-             .then(r => r.json())
-             .then(obj => {
-                const newTopics = topics.filter(topic => topic.id !== topicId);
-                setTopics(newTopics);
-             })
-             .catch(error => console.log(error))
+        const newTopics = topics.filter(topic => topic.id !== topicId);
+        setTopics(newTopics);
     }
 
     function onCreateNewTopic(newTopic){
         setTopics([newTopic, ...topics])
     }
+
     
-    const topicsToRender = topics.map(topic => <Topic key={topic.id} topic={topic} editable={user == topic.user_id ? true : false} onDelete={handleTopicDelete}/>)
-    const myTopics = topics.filter(topic => topic.id == user)
+    const topicsToRender = topics.map(topic => <Topic key={topic.id} topic={topic} user_id={user_id} onDelete={handleTopicDelete} />)
+    const myTopics = topics.filter(topic => topic.id == user_id)
 
     return(
         <div>
-                <NewTopic user_id={user} onCreateTopic={onCreateNewTopic}/>
+                <NewTopic user_id={user_id} onCreateTopic={onCreateNewTopic}/>
                 {topicsToRender}
         </div>
     )
