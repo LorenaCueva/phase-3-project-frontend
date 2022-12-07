@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function NewTopic({onCreateTopic, user_id}){
+function NewTopic({onCreateTopic, user}){
 
     const [addNewTopic, setAddNewTopic] = useState(false);
     const [newTopicName, setNewTopicName] = useState("");
@@ -24,7 +24,7 @@ function NewTopic({onCreateTopic, user_id}){
                 },
                 body: JSON.stringify({
                     title: newTopicName,
-                    user_id: user_id
+                    user_id: user.id
                 })
             })
             .then(r => r.json())

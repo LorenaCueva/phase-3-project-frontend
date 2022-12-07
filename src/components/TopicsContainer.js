@@ -1,18 +1,26 @@
 import {useEffect, useState} from 'react';
 import Topic from './Topic';
 import NewTopic from './NewTopic';
-import { setActiveLink } from './NavBar';
 import M from 'materialize-css';
 import TopicClosed from './TopicClosed';
 import Title from './Title';
+import { useNavigate} from 'react-router-dom';
 
-function TopicsContainer({user_id, type}) {
+function TopicsContainer({user, type}) {
 
     const [topics, setTopics] = useState([]);
     const [visible, setVisible] = useState(0);
 
+    const navigate = useNavigate();
+    
+
     useEffect(()=>{
         M.AutoInit();
+        if (!user){
+            console.log("no")
+            navigate('/') 
+        }
+        else{
         fetch(`http://localhost:9292/topics/${type}`)
         .then(r => r.json())
         .then(obj => {
@@ -20,7 +28,8 @@ function TopicsContainer({user_id, type}) {
             setVisible(0);
         })
         .catch(error => console.log(error))
-    },[type])
+        }
+    },[type, user])
 
     function handleTopicDelete(topicId){
         const newTopics = topics.filter(topic => topic.id !== topicId);
@@ -39,11 +48,13 @@ function TopicsContainer({user_id, type}) {
         console.log("id")
     }
 
+    
+
     let topicsToRender = null;
 
     if (type == "open"){
         const topicsList = visible == 0 ? topics : topics.filter(topic => topic.id == visible)
-        topicsToRender = topicsList.map(topic => <Topic key={topic.id} topic={topic} user_id={user_id} onDelete={handleTopicDelete} setVisible={handleSetVisible} onClose={handleCloseTopic}/>)
+        topicsToRender = topicsList.map(topic => <Topic key={topic.id} topic={topic} user={user} onDelete={handleTopicDelete} setVisible={handleSetVisible} onClose={handleCloseTopic}/>)
     }
     else if (type == "closed"){
         topicsToRender = topics.map(topic => <TopicClosed key={topic.id} topic={topic}/>)
@@ -55,12 +66,14 @@ function TopicsContainer({user_id, type}) {
                 {type == "open" ? 
                     <>
                         <Title title={"Open Topics"}/>
-                        <NewTopic user_id={user_id} onCreateTopic={onCreateNewTopic}/>
+                        <NewTopic user={user} onCreateTopic={onCreateNewTopic}/>
                     </> : 
                         <Title title={"Closed Topics"}/>
                 }
                 {topicsToRender}
         </div>
     )
+
+    
 }
 export default TopicsContainer;

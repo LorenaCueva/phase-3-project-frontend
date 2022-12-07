@@ -3,16 +3,19 @@ import { useNavigate} from 'react-router-dom';
 import M from 'materialize-css';
 import IdeasContainer from './IdeasContainer';
 
-function Topic({topic, onDelete, user_id, setVisible, onClose}){
+function Topic({topic, onDelete, user, setVisible, onClose}){
 
-    const editable = user_id == topic.user_id ? true : false
+    const editable = user.id == topic.user_id ? true : false
 
     const [onEdit, setOnEdit] = useState(false);
     const [topicData, setTopicData] = useState(topic);
     const [seeIdeas, setSeeIdeas] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+    const [ideasCount, setIdeasCount] = useState(topic.ideas_count);
 
     const navigate = useNavigate();
     const created_at = new Date(topic.created_at).toDateString();
+    const color = isHovering? "cyan darken-3" : "teal lighten-2";
 
     function handleFormChange(e){
         const name = e.target.name;
@@ -93,6 +96,23 @@ function Topic({topic, onDelete, user_id, setVisible, onClose}){
 
      }
 
+     function handleAddIdea(type){
+        if(type == "add"){
+            setIdeasCount(ideasCount + 1);
+        }
+        else if(type == "delete"){
+            setIdeasCount(ideasCount - 1);
+        }
+     }
+    
+     const handleMouseEnter = () => {
+        setIsHovering(true);
+      };
+    
+      const handleMouseLeave = () => {
+        setIsHovering(false);
+      };
+
 
     M.AutoInit();
 
@@ -101,7 +121,7 @@ function Topic({topic, onDelete, user_id, setVisible, onClose}){
         return (
             <div >
                 <ul className="collection with-header grey lighten-4 left-align" onClick={handleSeeIdeas} >
-                    <li className="collection-header teal lighten-2">
+                    <li className={`collection-header ${color}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     <a className="secondary-content">
                         {editable ?
                             <div className="padding white-text">
@@ -114,10 +134,10 @@ function Topic({topic, onDelete, user_id, setVisible, onClose}){
                         <h4>{topicData.title}</h4></li>
                     <li className="collection-item grey lighten-4">Author: {topicData.author}</li>
                     <li className="collection-item grey lighten-4">Created on: {created_at}</li>
-                    <li className="collection-item grey lighten-4">Number of Ideas: {topicData.ideas_count}</li>
+                    <li className="collection-item grey lighten-4">Ideas Count: {ideasCount}</li>
                 </ul>
                     <div>
-                        {seeIdeas ? <IdeasContainer topic_id={topic.id} user_id={user_id} onBack={handleSeeIdeas}/> : null }
+                        {seeIdeas ? <IdeasContainer topic_id={topic.id} user={user} onBack={handleSeeIdeas} onAddIdea={handleAddIdea}/> : null }
                     </div>
                 
             </div>
@@ -128,7 +148,7 @@ function Topic({topic, onDelete, user_id, setVisible, onClose}){
         return(
             <div>
                 <ul className="collection with-header grey lighten-4 left-align ">
-                    <li className="collection-header teal lighten-2 ">
+                    <li className="collection-header cyan darken-3">
                         <a className="secondary-content">
                             <i className="padding small material-icons white-text" onClick={handleFormSubmit}>check</i>
                             <i className="padding small material-icons white-text" onClick={(e) => setOnEdit(false)}>cancel</i>

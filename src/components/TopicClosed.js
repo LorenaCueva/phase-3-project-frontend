@@ -23,7 +23,6 @@ function TopicClosed({topic}){
                     <li className="collection-item teal lighten-4">
                         <a className="secondary-content lighten-4">
                             <i className="padding small material-icons teal-text ">favorite</i>{topic.winner_likes} likes
-                            
                         </a>
                     <h5>Winner Idea: {topic.winner}</h5></li>
                     <li className="collection-item teal lighten-4">Author: {topic.winner_author}</li>

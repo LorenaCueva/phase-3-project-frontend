@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function Idea({idea, user_id, onIdeaDelete}){
+function Idea({idea, user_id, onIdeaDelete, topicName=false}){
 
     const [liked, setLiked] = useState(idea.liked_by.includes(user_id));
     const [edit, setEdit] = useState(false);
@@ -8,14 +8,6 @@ function Idea({idea, user_id, onIdeaDelete}){
     const [likes, setLikes] = useState(idea.likes_count);
 
     const editable = idea.user_id == user_id
-
-    // console.log(editable)
-
-    function handleChooseIdea(){
-        if(window.confirm("Close Topic and Choose as Winner?")){
-            console.log("star")
-        }
-    }
 
 
     function handleLikeClick(){
@@ -117,9 +109,12 @@ function Idea({idea, user_id, onIdeaDelete}){
                                 : null}
                             <i className="padding small material-icons" onClick={handleLikeClick}>{liked ? "favorite" : "favorite_border"}</i>{likes} likes
                         </a>
-                        <p>{ideaBody} <br/> 
-                            By: {idea.author}
-                        </p>
+                        <div>
+                            <h5>{ideaBody} </h5>
+                            {topicName ? <h6>Topic: {idea.topic_title}</h6> : null}
+                            By: {idea.author} <br/> 
+                            
+                        </div>
                         </li>
                 </>
         )}
