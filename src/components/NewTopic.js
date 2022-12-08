@@ -47,11 +47,11 @@ function NewTopic({onCreateTopic, user}){
                     </form>
                         <div className='padding right-align'>
                             <button className="waves-effect waves-light btn" onClick={handleCreateNewTopic}><i className="material-icons left">check</i>Create</button>
-                            <button className="waves-effect waves-light btn" onClick={() => {setAddNewTopic(!addNewTopic); setNewTopicName("")}}><i className="material-icons left">cancel</i>Cancel</button>
+                            <button className="waves-effect waves-light btn" onClick={() => {setAddNewTopic((addNewTopic) => !addNewTopic); setNewTopicName("")}}><i className="material-icons left">cancel</i>Cancel</button>
                         </div>
                 </div> : 
                 <div className='padding'>
-                    <button className="waves-effect waves-light btn" onClick={() => setAddNewTopic(!addNewTopic)}><i className="material-icons left">add_box</i>Add Topic</button>
+                    <button className="waves-effect waves-light btn" onClick={() => setAddNewTopic((addNewTopic) => !addNewTopic)}><i className="material-icons left">add_box</i>Add Topic</button>
                 </div>}
         
         </div>

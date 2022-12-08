@@ -8,6 +8,7 @@ function NavBar({user}){
                 <nav className='cyan darken-3'>
                     <div className="nav-wrapper">
                         <div  className="brand-logo right">Brainstormy</div>
+                        <div  className="brand-logo center">{user ? `${user.name}`: null}</div>
                         <ul className="hide-on-med-and-down">
                             <li id="topics_open"><NavLink to="/">LogIn</NavLink></li>
                             <li id="topics_open"><NavLink to="topics/open">Open Topics</NavLink></li>

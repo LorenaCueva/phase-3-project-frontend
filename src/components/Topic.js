@@ -89,7 +89,6 @@ function Topic({topic, onDelete, user, setVisible}){
                     })
                     .then(r => r.json())
                     .then(obj => {
-                        console.log(obj);
                         navigate('/topics/closed');
                     })
                 }
@@ -101,10 +100,10 @@ function Topic({topic, onDelete, user, setVisible}){
 
      function handleAddIdea(type){
         if(type == "add"){
-            setIdeasCount(ideasCount + 1);
+            setIdeasCount((ideasCount) => ideasCount + 1);
         }
         else if(type == "delete"){
-            setIdeasCount(ideasCount - 1);
+            setIdeasCount((ideasCount) => ideasCount - 1);
         }
      }
     
@@ -128,7 +127,7 @@ function Topic({topic, onDelete, user, setVisible}){
                     <a className="secondary-content">
                         {editable ?
                             <div className="padding white-text">
-                                <i className="padding small material-icons white-text" onClick={()=>{setOnEdit(!onEdit)}}>edit</i>
+                                <i className="padding small material-icons white-text" onClick={()=>{setOnEdit((onEdit) => !onEdit)}}>edit</i>
                                 <i className="padding small material-icons white-text" onClick={handleTopicDelete}>delete</i>
                                 <i className="padding small material-icons white-text" onClick={handleCloseTopic}>close</i>Close
                             </div>

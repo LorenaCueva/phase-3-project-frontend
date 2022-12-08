@@ -31,7 +31,7 @@ function IdeasContainer({topic_id, user, onBack, onAddIdea}){
      onAddIdea("delete");
    }
 
-   console.log(ideas)
+
 
     const ideasToRender = ideas.map(idea => <Idea key={idea.id} idea={idea} user_id={user.id} onIdeaDelete={handleIdeaDelete}/>);
 

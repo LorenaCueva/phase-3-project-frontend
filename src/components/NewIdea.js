@@ -1,11 +1,9 @@
 import {useState} from 'react';
-import { useNavigate} from 'react-router-dom';
 
 function NewIdea({user_id, topic_id, onNewIdea, onCancel}){
 
     const [newIdea, setNewIdea] = useState("")
 
-    const navigate = useNavigate();
 
     function handleFormChange(e){
         setNewIdea(e.target.value)
@@ -33,10 +31,7 @@ function NewIdea({user_id, topic_id, onNewIdea, onCancel}){
                 setNewIdea("");
                 onNewIdea(obj)
             })
-            .catch(error => {
-                window.alert("Topic has been closed");
-                navigate('/topics/closed')
-                })
+            .catch(error=> console.log(error))
         }
     }
 

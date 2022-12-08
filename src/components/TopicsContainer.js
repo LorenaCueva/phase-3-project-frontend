@@ -35,10 +35,12 @@ function TopicsContainer({user, type}) {
     function handleTopicDelete(topicId){
         const newTopics = topics.filter(topic => topic.id !== topicId);
         setTopics(newTopics);
+        setVisible(0);
     }
 
     function onCreateNewTopic(newTopic){
         setTopics([newTopic, ...topics])
+        setVisible(0);
     }
 
     function handleSetVisible(id){
@@ -71,12 +73,12 @@ function TopicsContainer({user, type}) {
                 {type == "open" ? 
                     <>
                         <Title title={"Open Topics"}/>
-                        <Sort onSort={handleSort}/>
+                        {!visible ? <Sort onSort={handleSort}/> : null}
                         <NewTopic user={user} onCreateTopic={onCreateNewTopic}/>
                     </> :
                     <>
                         <Title title={"Closed Topics"}/>
-                        <Sort onSort={handleSort}/>
+                        {!visible ? <Sort onSort={handleSort}/> : null}
                     </>
                        
                 }

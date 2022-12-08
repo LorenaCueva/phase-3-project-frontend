@@ -5,7 +5,7 @@ function Sort({onSort}){
     const [sort, setSort] = useState(false);
 
     function handleSort(e){
-        setSort(!sort);
+        setSort((sort)=>!sort);
         onSort();
     }
 
