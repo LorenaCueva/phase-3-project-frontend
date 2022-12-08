@@ -17,8 +17,6 @@ function App() {
   return (
     <div >
       <div className="App">
-        {/* <header className="App-header">
-        </header> */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<NavBar user={user}/>}>

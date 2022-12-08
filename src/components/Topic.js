@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom';
 import M from 'materialize-css';
 import IdeasContainer from './IdeasContainer';
 
-function Topic({topic, onDelete, user, setVisible, onClose}){
+function Topic({topic, onDelete, user, setVisible}){
 
     const editable = user.id == topic.user_id ? true : false
 
@@ -65,34 +65,37 @@ function Topic({topic, onDelete, user, setVisible, onClose}){
 
      function handleCloseTopic(){
 
-        fetch(`http://localhost:9292/topic/${topic.id}/close`)
-        .then(r => r.json())
-        .then(obj => {
-            if(obj.ideas.length == 0){
-                window.alert("Topic can't be closed without ideas")
-            }
-            else{
-                let winnersCount = Math.max(...obj.ideas.map(idea => idea.likes_count));
-                let winnerIdeas = obj.ideas.filter(idea => idea.likes_count == winnersCount);
-                let winner_id = Math.floor(Math.random()* winnerIdeas.length)
-            
-                fetch(`http://localhost:9292/topic/${topic.id}/close`,{
-                    method:"PATCH",
-                    headers:{
-                        "Content-type": "Application/json"
-                    },
-                    body: JSON.stringify({
-                        winner_idea: winnerIdeas[winner_id].id                    
-                    })
-                })
-                .then(r => r.json())
-                .then(obj => {
-                    console.log(obj);
-                    navigate('/topics/closed');
-                })
-            }
+        if(window.confirm("Close Topic?")){
 
-        })
+            fetch(`http://localhost:9292/topic/${topic.id}/close`)
+            .then(r => r.json())
+            .then(obj => {
+                if(obj.ideas.length == 0){
+                    window.alert("Topic can't be closed without ideas")
+                }
+                else{
+                    let winnersCount = Math.max(...obj.ideas.map(idea => idea.likes_count));
+                    let winnerIdeas = obj.ideas.filter(idea => idea.likes_count == winnersCount);
+                    let winner_id = Math.floor(Math.random()* winnerIdeas.length)
+                
+                    fetch(`http://localhost:9292/topic/${topic.id}/close`,{
+                        method:"PATCH",
+                        headers:{
+                            "Content-type": "Application/json"
+                        },
+                        body: JSON.stringify({
+                            winner_idea: winnerIdeas[winner_id].id                    
+                        })
+                    })
+                    .then(r => r.json())
+                    .then(obj => {
+                        console.log(obj);
+                        navigate('/topics/closed');
+                    })
+                }
+
+            })
+        }
 
      }
 

@@ -1,5 +1,7 @@
 import {useState} from "react";
 import { useNavigate} from 'react-router-dom';
+import Title from "./Title";
+
 
 function LogIn({onLogIn}){
 
@@ -31,8 +33,9 @@ function LogIn({onLogIn}){
     }
 
     return(
-
-        <div className="row">
+        <div>
+            <Title title={"Log In"}/>
+            <div className="row">
              <div className="card-panel grey lighten-4">
                 <form className="col s6 offset-s3" onSubmit={handleFormSubmit}>
                     <div className="row">
@@ -53,6 +56,9 @@ function LogIn({onLogIn}){
             </div>
           </div>
        </div>
+        </div>
+
+        
         );
 
   
