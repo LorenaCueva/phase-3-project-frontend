@@ -29,7 +29,7 @@ function User({user}){
         setIdeas(ideas.filter(idea => idea.id !== id));
     }
 
-    const sortedIdeas = [...ideas]
+    let sortedIdeas = [...ideas]
 
     if(sort){
         sortedIdeas = sortedIdeas.sort((a, b) => b.likes_count - a.likes_count)
