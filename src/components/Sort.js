@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function Sort({onSort}){
+function Sort({onSort, message}){
 
     const [sort, setSort] = useState(false);
 
@@ -15,7 +15,7 @@ function Sort({onSort}){
              <p>
                 <label>
                     <input type="checkbox" className="filled-in" checked={sort} onChange={handleSort} />
-                    <span>See Only My Topics</span>
+                    <span>{message}</span>
                 </label>
             </p>
              </form>

@@ -73,12 +73,12 @@ function TopicsContainer({user, type}) {
                 {type == "open" ? 
                     <>
                         <Title title={"Open Topics"}/>
-                        {!visible ? <Sort onSort={handleSort}/> : null}
+                        {!visible ? <Sort onSort={handleSort} message={"See Only My Topics"}/> : null}
                         <NewTopic user={user} onCreateTopic={onCreateNewTopic}/>
                     </> :
                     <>
                         <Title title={"Closed Topics"}/>
-                        {!visible ? <Sort onSort={handleSort}/> : null}
+                        {!visible ? <Sort onSort={handleSort} message={"See Only My Topics"}/> : null}
                     </>
                        
                 }

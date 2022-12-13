@@ -7,14 +7,6 @@ function TopicClosed({topic}){
         <div>
             <ul className="collection with-header grey lighten-4 left-align">
                 <li className="collection-header teal lighten-2">
-                    {/* <a className="secondary-content">
-                        {editable ?
-                            <>
-                                <i className="padding small material-icons white-text" onClick={()=>{setOnEdit(!onEdit)}}>edit</i>
-                                <i className="padding small material-icons white-text" onClick={handleTopicDelete}>delete</i>
-                            </>
-                        : null}
-                    </a> */}
                         <h4>{topic.title}</h4></li>
                     <li className="collection-item grey lighten-4">Author: {topic.author}</li>
                     <li className="collection-item grey lighten-4">Created on: {created_at}</li>
