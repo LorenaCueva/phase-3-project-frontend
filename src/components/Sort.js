@@ -1,8 +1,8 @@
 import {useState} from 'react';
 
-function Sort({onSort, message}){
+function Sort({onSort, message, isOn}){
 
-    const [sort, setSort] = useState(false);
+    const [sort, setSort] = useState(isOn);
 
     function handleSort(e){
         setSort((sort)=>!sort);

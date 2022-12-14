@@ -46,7 +46,7 @@ function User({user}){
         return(
             <div >
                  <Title title={`${user.name}'s Ideas`}/>
-                 <Sort onSort={handleSort} message={"Sort By Most Liked"}/>
+                 <Sort onSort={handleSort} message={"Sort By Most Liked"} isOn={sort}/>
                 <ul className="collection with-header grey lighten-4 left-align" >
                     <li className="collection-header teal lighten-2 left-align">
                     <h4>Ideas:</h4></li>
