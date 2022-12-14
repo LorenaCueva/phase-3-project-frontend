@@ -5,6 +5,7 @@ import IdeasContainer from './IdeasContainer';
 
 function Topic({topic, onDelete, user, setVisible}){
 
+
     const editable = user.id == topic.user_id ? true : false
 
     const [onEdit, setOnEdit] = useState(false);
@@ -122,8 +123,8 @@ function Topic({topic, onDelete, user, setVisible}){
 
         return (
             <div >
-                <ul className="collection with-header grey lighten-4 left-align" onClick={handleSeeIdeas} >
-                    <li className={`collection-header ${color}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <ul className="collection with-header grey lighten-4 left-align">
+                    <li className={`collection-header ${color}`}>
                     <a className="secondary-content">
                         {editable ?
                             <div className="padding white-text">
@@ -138,6 +139,9 @@ function Topic({topic, onDelete, user, setVisible}){
                     <li className="collection-item grey lighten-4">Created on: {created_at}</li>
                     <li className="collection-item grey lighten-4">Ideas Count: {ideasCount}</li>
                 </ul>
+                <div className='right-align'>
+                <button className="waves-effect waves-light btn" onClick={handleSeeIdeas} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Ideas</button>
+                </div>
                     <div>
                         {seeIdeas ? <IdeasContainer topic_id={topic.id} user={user} onBack={handleSeeIdeas} onAddIdea={handleAddIdea}/> : null }
                     </div>

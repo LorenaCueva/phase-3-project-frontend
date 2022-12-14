@@ -4,19 +4,17 @@
 
 Brainstormy is a small React Web Project. It is meant to work in conjuction with its backend API.
 
-Add a Topic and have a brainstorming session with friends by adding Ideas, or liking ideas.
-When a topic is closed, the idea with the most likes (or a random amongst them, will be selected as winner)
+Add a Topic and have a brainstorming session with friends by adding Ideas, or liking Ideas.
+When a Topic is closed, the Idea with the most likes (or a random amongst them, will be selected as winner!)
 
 
 ## Installation Instructions
 
 - Fork and clone
 
-- NPM or Yarn install
+- NPM install or yarn install
 
-- NPM or Yarn start
-
-    - Open http://localhost:3000 to view it in your browser.
+- NPM start or yarn start
 
 - This project is meant to work in conjuction with its Brainstormy API (make sure it is up and running!)
 
@@ -31,4 +29,8 @@ https://materializecss.com/
 
 ## BLOG POST
 
+https://medium.com/@lorenacueva/good-better-best-115090208f9e
+
 ## Video
+
+https://www.youtube.com/watch?v=9Pve72XwdVA

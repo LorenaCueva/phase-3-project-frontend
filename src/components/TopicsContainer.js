@@ -51,8 +51,6 @@ function TopicsContainer({user, type}) {
         setSort((sort) => !sort)
     }
 
-    console.log(sort)
-
     let topicsToRender = null;
 
     let sortedTopics = sort ? topics.filter(topic => topic.user_id == user.id) : topics
